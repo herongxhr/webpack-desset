@@ -1,0 +1,28 @@
+{
+  "name": "webpack-desset",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=product webpack",
+    "start": "cross-env NODE_ENV=development webpack serve --env=product "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herongxhr/webpack-desset.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/herongxhr/webpack-desset/issues"
+  },
+  "homepage": "https://github.com/herongxhr/webpack-desset#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "html-webpack-plugin": "^5.3.1",
+    "webpack": "^5.39.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
