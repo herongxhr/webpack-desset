@@ -10,49 +10,40 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.txt$/, use: 'raw-loader' },
       {
-        test: /\.css$/, use: [
-          // 可以把css转换为js
-          // 从下往上执行
-          // 最上面的loader要返回js
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
+        test: /\.jsx?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [["@babel/preset-env", {
+              targets: "> 0.25%, not dead",
+            }], '@babel/preset-react'],
+            plugins: [
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
+            ],
           },
-          'postcss-loader',// css 预处理器
-        ]
+        },
       },
       {
-        test: /\.less$/, use: [
+        test: /\.css$/,
+        use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1
+              modules: false,
+              importLoaders: 1,
             }
           },
-          'less-loader',// 把less转换为css
+          'postcss-loader'
         ]
       },
-      {
-        test: /\.sass$/, use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
-          },
-          'sass-loader',// 把sass转换为css
-        ]
-      }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' })
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    })
   ]
 };

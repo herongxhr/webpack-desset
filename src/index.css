@@ -1,5 +1,11 @@
-@import "./bg.css";
 
-body {
+::placeholder {
     color: red;
+}
+
+#postcss {
+    width           : 200px;
+    height          : 50px;
+    background-color: aqua;
+    transform       : rotate(70deg);
 }
