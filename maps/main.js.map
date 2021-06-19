@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://webpack-desset/./src/index.js"],"names":["a","console","log"],"mappings":";;;;;AAAA,IAAIA,CAAC,GAAG,CAAR;AACA;AACAC,OAAO,CAACC,GAAR,CAAYF,CAAZ,E","file":"main.js","sourcesContent":["let a = 1;\ndebugger\nconsole.log(a);\n"],"sourceRoot":""}

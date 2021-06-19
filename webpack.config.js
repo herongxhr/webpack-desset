@@ -1,12 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 module.exports = {
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'product' ? 'production' : 'development',
   devtool: false,
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -15,35 +17,18 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [["@babel/preset-env", {
-              targets: "> 0.25%, not dead",
-            }], '@babel/preset-react'],
-            plugins: [
-              ['@babel/plugin-proposal-decorators', { legacy: true }],
-              ['@babel/plugin-proposal-class-properties', { loose: true }],
-            ],
-          },
+            "presets": ["@babel/preset-env", "@babel/preset-react"],
+          }
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-              importLoaders: 1,
-            }
-          },
-          'postcss-loader'
-        ]
+        include: path.join(__dirname, 'src'),
+        exclude: /node_modules/
       },
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['**/*'], })
   ]
 };
